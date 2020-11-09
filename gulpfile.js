@@ -127,9 +127,7 @@ function clear() {
 }
 
 exports.build = series(
-  parallel(clear, convertWebp, series(img, sprite, html)),
-  copy,
-  scss,
-  js
+  parallel(clear, convertWebp, img),
+  parallel(sprite, html, copy, scss, js)
 );
 exports.start = series(exports.build, sync);
